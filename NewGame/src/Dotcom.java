@@ -1,28 +1,23 @@
-
+import java.util.ArrayList;
 public class Dotcom {
-	private int[] locationCells;
-	private int hp;
+	private ArrayList<String> locationCells;
 	
-	void setLocation(int[] locations) {
+	
+	void setLocation(ArrayList<String> locations) {
 		locationCells=locations;
-		hp=locations.length;
 	}
 	
-	int getHp() {
-		return hp;
-	}
+	
 	
 	String checkHit(String guess) {
-		int guessLoc=Integer.parseInt(guess);
 		String result="miss";
-		for(int location:locationCells) {
-			if (guessLoc==location) {
-				hp--;
-				result="hit";
-				break;
-			}
+
+		if (locationCells.contains(guess)) {
+			result="hit";
+			locationCells.remove(guess);
 		}
-		if (hp==0) {
+		
+		if (locationCells.isEmpty()) {
 			result="kill";
 		}
 		System.out.println(result);
